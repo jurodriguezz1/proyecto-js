@@ -79,4 +79,4 @@ function calcularPrecio(producto, cantidad) {
     const precioSinIva = cantidad * producto.precio;
     const precioConIva = precioSinIva * (1 + IVA);
     return precioConIva;
-}   
+}
