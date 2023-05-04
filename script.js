@@ -34,13 +34,19 @@ if (opcion === 1) {
     } else {
     alert("Opcion invalida");
     }
+
+    function calcularPrecio(producto, cantidad) {
+    const precioSinIva = cantidad * producto.precio;
+    const precioConIva = precioSinIva * (1 + IVA);
+    return precioConIva;
+}   
 } else if (opcion === 2) {
     //prendas calzado
 
     const calzado = [
-        {nombre:"Qatar", precio: 9.000},
-        {nombre:"texanas", precio: 18.000},
-        {nombre:"Zayara", precio: 14.000},
+        {nombre:"Qatar", precio: 9000},
+        {nombre:"texanas", precio: 18000},
+        {nombre:"Zayara", precio: 14000},
     ];
 
     //mostrar al usuario
@@ -66,6 +72,7 @@ if (opcion === 1) {
     alert("Gracias por tu compra!");
 } else {
     alert("opcion invalida;");
+}
 }
 
 function calcularPrecio(producto, cantidad) {
