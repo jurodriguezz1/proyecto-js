@@ -1,34 +1,75 @@
-// pedimos el usuario que ingrese cuantos miembros son en la familia
-let edadMiembros = []
-let promedioEdades = []
-let sumaEdades = []
-let resultado = []
+const IVA = 0.21;
 
-const cantMiembros = parseInt(prompt(`Ingrese la cantidad de miembros de la familia`));
+let opcion = null;
 
+while (opcion !== 0) {opcion = parseInt(
+    prompt("¿Qué desea comprar? Opcion 1: indumentaria, Opcion 2: calzado. Presione 0 para salir"));
 
-// pedimos que ingrese las edades segun cuantos miembros de la familia son
-for (let i = 0; i < cantMiembros; i++) {
-    const edad = parseInt(prompt(`Edad de mayor a menor de los integrantes`));
-    edadMiembros.push(edad);
-}
+if (opcion === 1) {
+    //prendas de indumentaria
+    const prendas = [
+    { nombre: "pijamanta", precio: 14000 },
+    { nombre: "pijama polarsoft", precio: 11000 },
+    { nombre: "parka corderito", precio: 18500 },
+    { nombre: "parka premium", precio: 19000 },
+    { nombre: "puffer alaska", precio: 11800 },
+    { nombre: "puffer vegan", precio: 19000 },
+    ];
 
-// sumamos todas las edades y las dividimos por la cant de miembros de la familia
-function sumar(edades) {
-    let suma = 0;
-    for (let i = 0; i < edades.length; i++) {
-        suma += edades[i];
+    let mensaje = "seleccione una prenda:\n";
+    for (let i = 0; i < prendas.length; i++) {
+    mensaje += `${i + 1}.${prendas[i].nombre}($${prendas[i].precio})\n`;
     }
-    return suma;
+    //que el usuario elija una prenda
+    const seleccion = parseInt(prompt(mensaje));
+    //calcular el precio final
+    if (seleccion >= 1 && seleccion <= prendas.length) {
+    const prendaSeleccionada = prendas[seleccion - 1];
+    const cantidad = parseInt(
+        prompt(`¿cuantas unidades de ${prendaSeleccionada.nombre} desea comprar?`)
+    );
+    const precioConIva = calcularPrecio(prendaSeleccionada, cantidad);
+    alert(
+        `El precio final a pagar por ${cantidad} unidades de ${prendaSeleccionada.nombre} es: $${precioConIva.toFixed(2)}`);
+    } else {
+    alert("Opcion invalida");
+    }
+} else if (opcion === 2) {
+    //prendas calzado
+
+    const calzado = [
+        {nombre:"Qatar", precio: 9.000},
+        {nombre:"texanas", precio: 18.000},
+        {nombre:"Zayara", precio: 14.000},
+    ];
+
+    //mostrar al usuario
+    let mensaje = "seleccione un calzado:\n";
+
+    for(let i = 0; i < calzado.length; i++){
+        mensaje +=`${i + 1}.${calzado[i].nombre}($${calzado[i].precio})\n`;
+    }
+
+    //que el usuario seleccione
+    const seleccion = parseInt(prompt(mensaje));
+
+    //Calcular precio final
+    if (seleccion >= 1 && seleccion <= calzado.length) {
+        const calzadoSeleccionado = calzado[seleccion - 1];
+        const cantidad = parseInt(prompt(`¿cuantas unidades de ${calzadoSeleccionado.nombre} desea comprar?`));
+        const precioConIva = calcularPrecio(calzadoSeleccionado, cantidad)
+        alert(`El precio final a pagar por ${cantidad} unidades de ${calzadoSeleccionado.nombre} es: $${precioConIva.toFixed(2)}`);
+    } else {
+        alert("Opcion invalida");
+    }
+} else if (opcion === 0){
+    alert("Gracias por tu compra!");
+} else {
+    alert("opcion invalida;");
 }
 
-function dividir(sumaEdades, cantMiembros) {
-    resultado = sumaEdades / cantMiembros;
-    return resultado;
+function calcularPrecio(producto, cantidad){
+    const precioSinIva = cantidad * producto.precio;
+    const precioConIva = precioSinIva * (1 + IVA);
+    return precioConIva;
 }
-
-const suma = sumar(edadMiembros);
-const promedio = dividir(suma, cantMiembros);
-
-alert (`La edad promedio de su familia es : ` + resultado);
-console.log (`La edad promedio de su familia es : ` + resultado);
