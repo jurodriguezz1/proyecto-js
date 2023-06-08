@@ -1,3 +1,7 @@
+body {
+    background-color: #B15E6C;
+}
+
 #items {
     list-style: none;
     padding: 0;
@@ -12,6 +16,7 @@
 .item img {
     width: 300px;
     height: auto;
+    justify-self: auto;
 }
 
 .btn {
@@ -20,4 +25,22 @@
     color: white;
     border: none;
     cursor: pointer;
+}
+
+#footer {
+    background-color: gray;
+    text-align: center;
+    grid-area: pie;
+}
+
+#formulario {
+    border: solid 7px;
+    }
+
+#img1 {
+    justify-self: auto;
+}
+
+#img2 {
+    justify-self: auto;
 }
